@@ -93,5 +93,26 @@ for i,eachCity in enumerate(city):
 
         print("该城市进度{}/{}，城市序号{}/{}，当前页面标题：{}".format(j+1,len(eachCityUrl),i + 1, len(city),title))
 browser.quit()
-print('done')
+print('done，开始合并文件')
 
+files = os.listdir('result')
+l_clean = []
+for each in files:
+    if not 'empty' in each:
+        l_clean.append(each)
+
+for i,each in enumerate(l_clean):
+    maxNum = len(l_clean)
+    if i == 0:
+        path = 'result/'+each
+        f = open(path,'r',encoding='utf-8')
+        df = pd.read_csv(f)    
+    else:
+        path = 'result/'+each
+        print(i+1, '/', maxNum,'----',each)
+        f = open(path,'r',encoding='utf-8')
+        df2 = pd.read_csv(f)
+        df = df.append(df2)
+df2 = df.sort_values(by=["city","time_point"], ascending=[True, True]).reset_index(drop=True)
+df2.to_csv('_2013-12_2018_08.csv', index_label='index')     
+print('合并文件完成')

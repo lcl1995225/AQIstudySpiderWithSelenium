@@ -107,12 +107,12 @@ for i,each in enumerate(l_clean):
     if i == 0:
         path = 'result/'+each
         f = open(path,'r',encoding='utf-8')
-        df = pd.read_csv(f)    
+        df = pd.read_csv(f,index_col='index')
     else:
         path = 'result/'+each
         print(i+1, '/', maxNum,'----',each)
         f = open(path,'r',encoding='utf-8')
-        df2 = pd.read_csv(f)
+        df2 = pd.read_csv(f,index_col='index')
         df = df.append(df2)
 df2 = df.sort_values(by=["city","time_point"], ascending=[True, True]).reset_index(drop=True)
 df2.to_csv('_2013-12_2018_08.csv', index_label='index')     

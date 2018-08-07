@@ -28,7 +28,7 @@ https://www.aqistudy.cn/historydata/index.php
 
 ## 运行过程
 运行AQIstudySpiderWithSelenium.py，从city.xlsx获取城市列表，加上日期组装成待爬取url列表（形如：https://www.aqistudy.cn/historydata/daydata.php?city=遵义&month=201402） 。通过selenium和chromewebdriver驱动chrome浏览器模拟人工浏览并采集数据。  
-值得一提的是，ajax数据传递在network中未见，通过页面底部的源代码，发现chrome console调用js:return items，可以获取该月份该城市的空气质量相关数据。尝试挖掘更直接的接口，时间仓促，未果，留代码备用。（部分函数通过界面中调用getServerData获取）
+值得一提的是，ajax数据传递在network中未见，通过页面底部的源代码，发现chrome console调用js（return items），可以获取该月份该城市的空气质量相关数据。尝试挖掘更直接的接口，时间仓促，未果，留代码备用。（部分函数通过浏览器中调用getServerData获取）
 ```js
 function loaddata() {
   var method = 'GETDAYDATA';
